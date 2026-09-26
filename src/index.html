@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';" />
+  <title>FZShield</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span class="brand-name">FZShield</span>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-group">
+          <span class="nav-group-label">Perlindungan</span>
+
+          <button class="nav-item is-active" data-view="dashboard">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            Dasbor
+          </button>
+          <button class="nav-item" data-view="pindai">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+            Pemindaian
+          </button>
+          <button class="nav-item" data-view="karantina">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>
+            Karantina
+            <span class="nav-badge" id="badge-karantina" hidden>0</span>
+          </button>
+          <button class="nav-item" data-view="firewall">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></svg>
+            Firewall &amp; Jaringan
+          </button>
+          <button class="nav-item" data-view="tautan">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+            Cek Tautan
+          </button>
+        </div>
+
+        <div class="nav-group">
+          <span class="nav-group-label">Sistem</span>
+
+          <button class="nav-item" data-view="startup">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.77.04"/></svg>
+            Item Startup
+          </button>
+          <button class="nav-item" data-view="sampah">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            Pembersih Sampah
+          </button>
+          <button class="nav-item" data-view="kesehatan">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/><path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+            Kesehatan Sistem
+          </button>
+          <button class="nav-item" data-view="aktivitas">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+            Aktivitas
+          </button>
+          <button class="nav-item" data-view="pengaturan">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+            Pengaturan
+          </button>
+        </div>
+      </nav>
+
+      <div class="sidebar-foot">
+        <span class="version">FZShield 1.0.0</span>
+      </div>
+    </aside>
+
+    <!-- ============ KONTEN ============ -->
+    <main class="content">
+
+      <!-- ---------- DASHBOARD ---------- -->
+      <section class="view is-active" id="view-dashboard">
+        <header class="view-head">
+          <div>
+            <h1>Dasbor perlindungan</h1>
+            <p class="view-sub">Ringkasan status keamanan perangkat ini.</p>
+          </div>
+          <div class="status-chip" id="status-chip">
+            <span class="dot"></span>
+            <span id="status-chip-text">Real-time nonaktif</span>
+          </div>
+        </header>
+
+        <div class="dash-grid">
+          <div class="ring-card">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 200 200" class="ring-svg">
+                <circle cx="100" cy="100" r="86" class="ring-track"/>
+                <circle cx="100" cy="100" r="86" class="ring-fill" id="ring-fill"/>
+              </svg>
+              <div class="ring-center">
+                <svg viewBox="0 0 24 24" class="ring-shield" id="ring-shield-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                <span class="ring-label" id="ring-label">Aman</span>
+              </div>
+            </div>
+            <p class="ring-caption" id="ring-caption">Belum ada pemindaian pada sesi ini.</p>
+          </div>
+
+          <div class="stat-col">
+            <div class="stat-row">
+              <div class="stat-box">
+                <span class="stat-num" id="stat-dipindai">0</span>
+                <span class="stat-label">File diperiksa</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" id="stat-ancaman">0</span>
+                <span class="stat-label">Ancaman ditemukan</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" id="stat-mencurigakan">0</span>
+                <span class="stat-label">File mencurigakan</span>
+              </div>
+            </div>
+
+            <div class="quick-actions">
+              <button class="btn btn-primary" data-scan="cepat">Pindai cepat</button>
+              <button class="btn btn-ghost" data-scan="penuh">Pindai penuh</button>
+              <button class="btn btn-ghost" data-scan="kustom">Pindai folder tertentu…</button>
+            </div>
+
+            <div class="mini-log" id="mini-log">
+              <p class="mini-log-empty">Aktivitas terbaru akan muncul di sini.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- PEMINDAIAN ---------- -->
+      <section class="view" id="view-pindai">
+        <header class="view-head">
+          <div>
+            <h1>Pemindaian</h1>
+            <p class="view-sub">Jalankan dan pantau proses pemindaian secara langsung.</p>
+          </div>
+        </header>
+
+        <div class="scan-panel">
+          <div class="scan-modes">
+            <button class="mode-card" data-scan="cepat">
+              <span class="mode-title">Pindai cepat</span>
+              <span class="mode-desc">Memeriksa folder Unduhan, Desktop, dan Dokumen. Cocok untuk pengecekan rutin.</span>
+            </button>
+            <button class="mode-card" data-scan="penuh">
+              <span class="mode-title">Pindai penuh</span>
+              <span class="mode-desc">Memeriksa seluruh folder pengguna. Memakan waktu lebih lama tergantung jumlah file.</span>
+            </button>
+            <button class="mode-card" data-scan="kustom">
+              <span class="mode-title">Pindai folder tertentu</span>
+              <span class="mode-desc">Pilih satu folder spesifik untuk diperiksa.</span>
+            </button>
+          </div>
+
+          <div class="scan-progress" id="scan-progress" hidden>
+            <div class="progress-head">
+              <span id="progress-text">Memindai…</span>
+              <button class="btn btn-danger-outline" id="btn-batal-pindai">Batalkan</button>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <p class="progress-file" id="progress-file"></p>
+          </div>
+
+          <div class="scan-results">
+            <div class="scan-results-head">
+              <h2>Hasil pemindaian</h2>
+              <div class="scan-summary" id="scan-summary"></div>
+            </div>
+            <table class="table" id="tabel-hasil">
+              <thead>
+                <tr><th>File</th><th>Status</th><th>Detail</th><th></th></tr>
+              </thead>
+              <tbody id="tabel-hasil-body">
+                <tr class="table-empty"><td colspan="4">Belum ada hasil pemindaian.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- KARANTINA ---------- -->
+      <section class="view" id="view-karantina">
+        <header class="view-head">
+          <div>
+            <h1>Karantina</h1>
+            <p class="view-sub">File yang dipindahkan ke sini tidak dapat dijalankan oleh sistem.</p>
+          </div>
+        </header>
+
+        <table class="table" id="tabel-karantina">
+          <thead>
+            <tr><th>Nama asli</th><th>Alasan</th><th>Dikarantina</th><th></th></tr>
+          </thead>
+          <tbody id="tabel-karantina-body">
+            <tr class="table-empty"><td colspan="4">Karantina kosong.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ---------- FIREWALL & JARINGAN ---------- -->
+      <section class="view" id="view-firewall">
+        <header class="view-head">
+          <div>
+            <h1>Firewall &amp; Jaringan</h1>
+            <p class="view-sub">Pantau interface jaringan dan port yang sedang menunggu koneksi (listening).</p>
+          </div>
+          <button class="btn btn-ghost" id="btn-segarkan-jaringan">Segarkan</button>
+        </header>
+
+        <div class="panel-block">
+          <h2 class="panel-title">Interface jaringan</h2>
+          <table class="table" id="tabel-interface">
+            <thead><tr><th>Nama</th><th>Alamat</th><th>Tipe</th></tr></thead>
+            <tbody id="tabel-interface-body">
+              <tr class="table-empty"><td colspan="3">Memuat…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel-block">
+          <h2 class="panel-title">Port yang sedang listening</h2>
+          <p class="panel-note" id="port-note" hidden>Informasi port tidak tersedia di sistem ini.</p>
+          <table class="table" id="tabel-port">
+            <thead><tr><th>Protokol</th><th>Alamat lokal</th><th>PID</th></tr></thead>
+            <tbody id="tabel-port-body">
+              <tr class="table-empty"><td colspan="3">Memuat…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="setting-note">
+          <strong>Catatan:</strong> tampilan ini bersifat pemantauan (read-only), bukan firewall yang secara
+          aktif memblokir trafik. Pemblokiran koneksi memerlukan integrasi khusus per sistem operasi.
+        </div>
+      </section>
+
+      <!-- ---------- CEK TAUTAN ---------- -->
+      <section class="view" id="view-tautan">
+        <header class="view-head">
+          <div>
+            <h1>Cek Tautan</h1>
+            <p class="view-sub">Periksa pola mencurigakan pada tautan sebelum Anda membukanya.</p>
+          </div>
+        </header>
+
+        <div class="panel-block">
+          <div class="link-check-form">
+            <input type="text" id="input-tautan" placeholder="Tempel tautan di sini, mis. https://contoh.com" />
+            <button class="btn btn-primary" id="btn-cek-tautan">Periksa</button>
+          </div>
+          <p class="panel-note">Pemeriksaan dilakukan sepenuhnya di perangkat Anda. Tautan tidak dikirim ke server mana pun.</p>
+
+          <div class="link-result" id="link-result" hidden>
+            <div class="link-result-head">
+              <span class="pill" id="link-result-pill"></span>
+              <span class="link-result-host" id="link-result-host"></span>
+            </div>
+            <ul class="link-result-list" id="link-result-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- ITEM STARTUP ---------- -->
+      <section class="view" id="view-startup">
+        <header class="view-head">
+          <div>
+            <h1>Item Startup</h1>
+            <p class="view-sub">Aplikasi/layanan yang otomatis berjalan saat sistem dinyalakan.</p>
+          </div>
+          <button class="btn btn-ghost" id="btn-segarkan-startup">Segarkan</button>
+        </header>
+
+        <table class="table" id="tabel-startup">
+          <thead><tr><th>Nama</th><th>Lokasi</th><th>Terakhir diubah</th><th></th></tr></thead>
+          <tbody id="tabel-startup-body">
+            <tr class="table-empty"><td colspan="4">Memuat…</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ---------- PEMBERSIH SAMPAH ---------- -->
+      <section class="view" id="view-sampah">
+        <header class="view-head">
+          <div>
+            <h1>Pembersih Sampah</h1>
+            <p class="view-sub">Bersihkan file cache dan temporary yang tidak lagi diperlukan.</p>
+          </div>
+          <button class="btn btn-ghost" id="btn-segarkan-sampah">Pindai ulang</button>
+        </header>
+
+        <div class="junk-list" id="junk-list">
+          <p class="panel-note">Memindai…</p>
+        </div>
+      </section>
+
+      <!-- ---------- KESEHATAN SISTEM ---------- -->
+      <section class="view" id="view-kesehatan">
+        <header class="view-head">
+          <div>
+            <h1>Kesehatan Sistem</h1>
+            <p class="view-sub">Ringkasan kondisi perangkat dan postur keamanan FZShield.</p>
+          </div>
+          <button class="btn btn-ghost" id="btn-segarkan-kesehatan">Segarkan</button>
+        </header>
+
+        <div class="health-view" id="health-grid">
+          <p class="panel-note">Memuat…</p>
+        </div>
+      </section>
+
+      <!-- ---------- AKTIVITAS ---------- -->
+      <section class="view" id="view-aktivitas">
+        <header class="view-head">
+          <div>
+            <h1>Riwayat aktivitas</h1>
+            <p class="view-sub">Catatan seluruh pemindaian dan deteksi.</p>
+          </div>
+        </header>
+
+        <ul class="activity-list" id="activity-list">
+          <li class="activity-empty">Belum ada aktivitas tercatat.</li>
+        </ul>
+      </section>
+
+      <!-- ---------- PENGATURAN ---------- -->
+      <section class="view" id="view-pengaturan">
+        <header class="view-head">
+          <div>
+            <h1>Pengaturan</h1>
+            <p class="view-sub">Atur perlindungan real-time dan preferensi aplikasi.</p>
+          </div>
+        </header>
+
+        <div class="settings-list">
+          <div class="setting-row">
+            <div>
+              <h3>Perlindungan real-time</h3>
+              <p>Memantau folder terpilih dan memeriksa setiap file baru secara otomatis.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-realtime" />
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+          </div>
+
+          <div class="setting-row" id="row-folder-pantau">
+            <div>
+              <h3>Folder yang dipantau</h3>
+              <p id="folder-pantau-list">Belum ada folder dipilih.</p>
+            </div>
+            <button class="btn btn-ghost" id="btn-tambah-folder-pantau">Tambah folder…</button>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <h3>Notifikasi</h3>
+              <p>Tampilkan notifikasi sistem saat ancaman ditemukan atau pemindaian selesai.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-notifikasi" checked />
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+            </label>
+          </div>
+
+          <div class="setting-note">
+            <strong>Catatan:</strong> basis data signature FZShield adalah kumpulan awal untuk pengujian
+            (termasuk signature standar industri EICAR). Untuk perlindungan produksi, hubungkan mesin
+            pemindai ke feed intelijen ancaman sungguhan melalui <code>scanner/scanEngine.js</code>.
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toast-stack"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
